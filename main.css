@@ -1,0 +1,6 @@
+.pets {
+  display: flex;
+  flex-wrap: wrap;
+  flex-basis: 500px;
+  justify-content: space-between;
+}
