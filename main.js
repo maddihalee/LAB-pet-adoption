@@ -13,7 +13,7 @@ const pets = [
       color: "Brown",
       specialSkill: "Just picks the tomatoes off of a sandwich instead of requesting a whole new sandwich.",
       type: "dino",
-      imageUrl: "https://ih1.redbubble.net/image.1328780671.8576/st,small,507x507-pad,600x600,f8f8f8.u1.jpg",
+      imageUrl: "https://img.freepik.com/free-vector/stegosaurus-dinosaur-cartoon-character_1308-62778.jpg?w=2000",
     },
     {
       id: 3,
@@ -61,7 +61,7 @@ const pets = [
       color: "Grey",
       specialSkill: "Comfortable in the outdoors for up to eight hours.",
       type: "dino",
-      imageUrl: "https://i.etsystatic.com/23384595/r/il/d85d32/3673785703/il_570xN.3673785703_msem.jpg"
+      imageUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTE6ENLEX-npb3lfmodHpTJGc1cmdrhSVfp9w&usqp=CAU"
     },
     {
       id: 9,
@@ -85,7 +85,7 @@ const pets = [
       color: "Orange",
       specialSkill: "Can be around food without staring creepily at it.",
       type: "dino",
-      imageUrl: "https://thumbs.dreamstime.com/b/funny-yellow-dino-isolated-white-illustration-funny-yellow-dino-153907538.jpg"
+      imageUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQOahcVhHPT5pasjSdmJNE3G12NhfyAuDhHWw&usqp=CAU"
     },
     {
       id: 12,
@@ -101,7 +101,7 @@ const pets = [
       color: "Red",
       specialSkill: "Expertly quotes and recognizes dialogue from early seasons of The Simpsons.",
       type: "dog",
-      imageUrl: "https://i.pinimg.com/originals/bb/60/90/bb60909aefcd054416f74641755f5e54.gif"
+      imageUrl: "https://i0.wp.com/bucketlistjourney.net/wp-content/uploads/2018/02/Dog-Pug-Blanket-Unsplash.jpg"
     },
     {
       id: 14,
@@ -141,7 +141,7 @@ const pets = [
       color: "Brown",
       specialSkill: "Proficient in air guitar",
       type: "dino",
-      imageUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTCcuLhVaizhiRhMt9AJRDzNIYJrKVvky54wA&usqp=CAU"
+      imageUrl: "https://t3.ftcdn.net/jpg/04/71/84/22/360_F_471842288_huIRSfiXfpkwbsYyRU6cNNuMDSzO12h9.jpg"
     },
     {
       id: 19,
@@ -165,7 +165,7 @@ const pets = [
       color: "Red",
       specialSkill: "Owns a Nintendo Power Glove.",
       type: "dino",
-      imageUrl: "https://ih1.redbubble.net/image.1120046015.6854/st,small,507x507-pad,600x600,f8f8f8.jpg"
+      imageUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSBVtfkx4nuMnmi2olGqgLU4WIAmhHANUuvtQ&usqp=CAU"
     },
     {
         id: 22,
@@ -197,7 +197,7 @@ const pets = [
       color: "Red",
       specialSkill: "Knows the words to 4 rap songs.",
       type: "cat",
-      imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Cat_Somali.jpg/640px-Cat_Somali.jpg"
+      imageUrl: "https://www.thesprucepets.com/thmb/y5JGbldlBUUtRA7ZqeVdQsbVvxg=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/GettyImages-1288261359-4016b054680e41d28451f081babd0c45.jpg"
     },
     {
         id: 26,
@@ -237,14 +237,20 @@ const pets = [
       color: "Red",
       specialSkill: "Doesn’t get weirded out by the word “moist.”",
       type: "dino",
-      imageUrl: "https://www.clipartmax.com/png/middle/72-727958_tyrannosaurus-velociraptor-dinosaur-clip-art-red-t-rex-cartoon.png"
+      imageUrl: "https://cdn.dribbble.com/users/1044993/screenshots/6634466/triceratops_dribbble.png?compress=1&resize=400x300"
     }
   ];
 
-  const app = document.querySelector(".pets");
-  let domString = "";
+const renderToDom = (divId, htmlToRender) => {
+  const selectedDiv = document.querySelector(divId)
+  selectedDiv.innerHTML = htmlToRender
+}
 
-  for (const pet of pets) {
+  // const app = document.querySelector(".pets");
+  // let domString = "";
+  const cardsOnDom = (array) => {
+    let domString = "";
+  for (const pet of array) {
     domString += `<div class="card" style="width: 18rem;">
     <img src="${pet.imageUrl}" class="card-img-top" alt="...">
     <div class="card-body">
@@ -256,4 +262,42 @@ const pets = [
   </div>`
   }
 
-app.innerHTML = domString;
+  renderToDom(".pets", domString)
+}
+
+// app.innerHTML = domString; 
+
+const filter = (array, petString) => {
+  const petsArray = [];
+  for (const pet of array) {
+    if (pet.type === petString) {
+      petsArray.push(pet)
+    }
+  } return petsArray
+}
+
+cardsOnDom(pets)
+
+const showAllButton = document.querySelector("#all")
+const catsButton = document.querySelector("#cats")
+const dogsButton = document.querySelector("#dogs")
+const dinosButton = document.querySelector("#dinos")
+
+showAllButton.addEventListener("click", () => {
+  cardsOnDom(pets);
+})
+
+catsButton.addEventListener("click", () => {
+  const catsFilter = filter(pets, "cat")
+  cardsOnDom(catsFilter)
+})
+
+dogsButton.addEventListener("click", () => {
+  const dogsFilter = filter(pets, "dog")
+  cardsOnDom(dogsFilter)
+})
+
+dinosButton.addEventListener("click", () => {
+  const dinosFilter = filter(pets, "dino") 
+  cardsOnDom(dinosFilter)
+})

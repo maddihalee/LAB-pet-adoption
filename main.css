@@ -1,6 +1,38 @@
 .pets {
   display: flex;
   flex-wrap: wrap;
-  flex-basis: 500px;
+  width: 2500px;
   justify-content: space-between;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+
+.buttons {
+  display: flex;
+  width: 2500px;
+  justify-content: center;
+}
+
+button {
+  width: 200px;
+}
+
+#cats {
+  background-color: pink;
+}
+
+#dogs {
+  background-color: lightblue;
+}
+
+#dinos {
+  background-color: palevioletred
+}
+
+#all {
+  background-color: aquamarine;
 }
