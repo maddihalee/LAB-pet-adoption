@@ -36,6 +36,12 @@ button {
   border-radius: 8px;
 }
 
+.input {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  flex-direction: column-reverse;
+}
 
 #cats {
   background-color: pink;
