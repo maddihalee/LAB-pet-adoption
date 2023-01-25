@@ -258,7 +258,7 @@ const renderToDom = (divId, htmlToRender) => {
       <p class="color">${pet.color}</p>
       <p class="specialSkill">${pet.specialSkill}</p>
       <p class="type">${pet.type}</p>
-      <button id="btn">Delete</button>
+      <button id="delete--${pet.id}">Delete</button>
     </div>
   </div>`
   }
@@ -303,7 +303,7 @@ dinosButton.addEventListener("click", () => {
   cardsOnDom(dinosFilter)
 })
 
-// Add button
+// Add button functionality
 
 const createPet = (event) => {
   event.preventDefault(); 
@@ -312,9 +312,6 @@ const createPet = (event) => {
   const specialSkill = document.querySelector("#special-skill")
   const type = document.querySelector("#type")
   const image = document.querySelector("#image")
-
-  console.log(name)
-  console.log(name.value)
 
   const newPet = {
     name: name.value,
@@ -335,5 +332,17 @@ console.log("new pet", newPet)
 const addButton = document.querySelector(".add")
 addButton.addEventListener("click", createPet)
 
-// Delete button
+// Delete button functionality
 
+const petsDiv = document.querySelector(".pets")
+
+petsDiv.addEventListener("click", (event) => {
+  if (event.target.id.includes("delete")) {
+    const [throwAway, petsId] = event.target.id.split("--")
+    const indexofPet = pets.findIndex(
+      (obj) => obj.id === Number(petsId)
+    )
+    pets.splice(indexofPet, 1)
+  }
+  cardsOnDom(pets)
+})
